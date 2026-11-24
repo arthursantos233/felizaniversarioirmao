@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Feliz Aniversário, Kauan! - 18 Anos</title>
+    
+    <!-- Fontes Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --azul-principal: #0ea5e9;
+            --azul-escuro: #0284c7;
+            --ciano: #06b6d4;
+            --texto-escuro: #0f172a;
+            --texto-mutado: #475569;
+            --branco: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            /* Fundo claro e iluminado */
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+            color: var(--texto-escuro);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100dvh;
+            overflow: hidden; /* Impede barras de rolagem causadas pela chuva */
+            position: relative;
+            padding: 20px;
+        }
+
+        /* --- EFEITOS DE FUNDO (Bolas de Luz) --- */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+            opacity: 0.6;
+            animation: flutuar 8s infinite alternate ease-in-out;
+        }
+        .shape-1 {
+            width: 300px; height: 300px;
+            background: #7dd3fc;
+            top: -50px; left: -50px;
+        }
+        .shape-2 {
+            width: 400px; height: 400px;
+            background: #38bdf8;
+            bottom: -100px; right: -100px;
+            animation-delay: -4s;
+        }
+
+        @keyframes flutuar {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, 40px) scale(1.1); }
+        }
+
+        /* --- CHUVA DE 18 (Container) --- */
+        #chuva-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100dvh;
+            pointer-events: none; /* Permite clicar no botão através da chuva */
+            z-index: 0; /* Fica atrás do cartão principal */
+            overflow: hidden;
+        }
+
+        .chuva-18 {
+            position: absolute;
+            top: -50px;
+            font-weight: 800;
+            color: rgba(14, 165, 233, 0.35); /* Azul translúcido */
+            text-shadow: 0 0 15px rgba(14, 165, 233, 0.2);
+            animation-name: cair;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            user-select: none;
+        }
+
+        @keyframes cair {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* --- CARD PRINCIPAL (Vidro Fosco) --- */
+        .card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 32px;
+            padding: clamp(20px, 5vw, 40px);
+            max-width: 440px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px -10px rgba(14, 165, 233, 0.25),
+                        0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+            animation: aparecer 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            perspective: 1000px;
+            z-index: 10; /* Fica na frente da chuva */
+        }
+
+        @keyframes aparecer {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            color: var(--texto-escuro);
+        }
+
+        h1 span {
+            background: linear-gradient(135deg, var(--azul-principal), var(--ciano));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* --- ÁREA DA FOTO (Efeito 3D) --- */
+        .foto-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 280px; /* Levemente menor para dar mais espaço */
+            margin: 0 auto 30px auto;
+            border-radius: 20px;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+            box-shadow: 0 15px 35px -5px rgba(2, 132, 199, 0.35);
+            background: var(--branco);
+            padding: 10px;
+        }
+
+        .foto-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+            object-fit: cover;
+            aspect-ratio: 3 / 4;
+        }
+
+        .foto-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 20px;
+            background: linear-gradient(125deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 40%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .foto-wrapper:hover::after {
+            opacity: 1;
+        }
+
+        /* --- TEXTO --- */
+        .mensagem {
+            font-size: clamp(1rem, 3.5vw, 1.05rem);
+            line-height: 1.6;
+            color: var(--texto-mutado);
+            margin-bottom: 35px;
+            font-weight: 400;
+        }
+
+        .mensagem strong {
+            color: var(--azul-escuro);
+            font-weight: 800;
+        }
+
+        /* --- BOTÃO --- */
+        .btn-festa {
+            background: linear-gradient(135deg, var(--azul-principal), var(--ciano));
+            color: var(--branco);
+            border: none;
+            padding: clamp(14px, 3vw, 18px) clamp(25px, 6vw, 40px);
+            font-size: clamp(0.95rem, 3vw, 1.1rem);
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px -5px rgba(14, 165, 233, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-festa:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 25px -5px rgba(6, 182, 212, 0.7);
+        }
+
+        .btn-festa:active {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        .btn-festa::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .btn-festa:hover::before {
+            left: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Container da Chuva de 18 -->
+    <div id="chuva-container"></div>
+
+    <!-- Luzes de fundo -->
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+
+    <main class="card">
+        <h1>Feliz Aniversário,<br><span>Kauan!</span></h1>
+        
+        <div class="foto-wrapper" id="tiltCard">
+            <img src="foto.jpg.jpeg" alt="Kauan e seu irmão" draggable="false">
+        </div>
+
+
+        <p class="mensagem">
+            Parabéns, <strong>irmãozaoooo</strong>! Euteamo demais mlkotee, aproveite seu dia irmão, obrigado pelos ensinos, pelas resenhas, pelo apoio e por tudo. Voce é zika mlkote tenho orgulho de voce, voce é zika demais irmão. Voce não sabe o quanto eu te admiro, voce é um exemplo mlkote. Referencia demais irmão. teamoporra! Vamo de marcha.🚀💙
+        </p>
+
+        <button class="btn-festa" id="btnFesta">Clique para Celebrar 🎉</button>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <script>
+        // --- 1. CHUVA DE "18" ---
+        const chuvaContainer = document.getElementById('chuva-container');
+        
+        function criarNumero18() {
+            const num = document.createElement('div');
+            num.classList.add('chuva-18');
+            num.innerText = '18';
+            
+            // Posição horizontal aleatória
+            num.style.left = Math.random() * 100 + 'vw';
+            
+            // Tamanho aleatório (entre 1rem e 3.5rem)
+            const tamanho = Math.random() * 2.5 + 1;
+            num.style.fontSize = tamanho + 'rem';
+            
+            // Velocidade aleatória (entre 4s e 9s para cair)
+            const duracao = Math.random() * 5 + 4;
+            num.style.animationDuration = duracao + 's';
+            
+            // Alterna levemente a cor entre azul e ciano
+            if (Math.random() > 0.5) {
+                num.style.color = 'rgba(6, 182, 212, 0.35)'; 
+            }
+
+            chuvaContainer.appendChild(num);
+
+            // Remove o elemento do DOM após a animação terminar (Performance)
+            setTimeout(() => {
+                num.remove();
+            }, duracao * 1000);
+        }
+
+        // Cria um novo "18" a cada 300 milissegundos
+        setInterval(criarNumero18, 300);
+
+
+        // --- 2. EFEITO DE FESTA (Confetes) ---
+        const coresFesta = ['#0ea5e9', '#06b6d4', '#ffffff', '#fbbf24'];
+
+        function dispararConfetes() {
+            confetti({
+                particleCount: 120,
+                spread: 80,
+                origin: { y: 0.6 },
+                colors: coresFesta,
+                zIndex: 999
+            });
+            
+            setTimeout(() => {
+                confetti({ particleCount: 60, angle: 60, spread: 60, origin: { x: 0 }, colors: coresFesta });
+            }, 200);
+            setTimeout(() => {
+                confetti({ particleCount: 60, angle: 120, spread: 60, origin: { x: 1 }, colors: coresFesta });
+            }, 400);
+        }
+
+        window.addEventListener('load', () => setTimeout(dispararConfetes, 600));
+        document.getElementById('btnFesta').addEventListener('click', dispararConfetes);
+
+        // --- 3. EFEITO 3D NA FOTO (Tilt) ---
+        const card = document.getElementById('tiltCard');
+        
+        if (window.matchMedia("(hover: hover)").matches) {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -10;
+                const rotateY = ((x - centerX) / centerX) * 10;
+
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
+                card.style.transition = 'transform 0.5s ease';
+            });
+
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
